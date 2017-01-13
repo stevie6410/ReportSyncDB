@@ -1,0 +1,18 @@
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_NULLS ON
+GO
+CREATE FUNCTION [dbo].[ufn_EventDescription](@EventName varchar(100))
+RETURNS VARCHAR(100)
+AS
+BEGIN
+    RETURN CASE 
+		WHEN @EventName LIKE 'CREATE_%' THEN 'CREATE'
+		WHEN @EventName LIKE 'ALTER_%' THEN 'ALTER'
+		WHEN @EventName LIKE 'DROP_%' THEN 'DROP'
+		ELSE @EventName
+	END
+END
+
+
+GO
